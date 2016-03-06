@@ -61,10 +61,6 @@ public class MainActivity extends AppCompatActivity {
                                     for (int i = 0; i < rawName.length(); i++) {
                                         friendList.add(new Friend(rawName.getJSONObject(i).getString("name"),rawName.getJSONObject(i).getString("id")));
                                     }
-                                    for(Friend friend : friendList) {
-                                        Log.i("MainActivity","Name:" + friend.getName() +", ID: " + friend.getId());
-                                    }
-                                    Log.i("MainActivity",rawName.toString());
                                     intent.putParcelableArrayListExtra("data", friendList);
                                     startActivity(intent);
 

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class CustomAdapter extends BaseAdapter {
 
     Context context;
-    private ArrayList<Friend> friends = new ArrayList<Friend>();
+    private ArrayList<Friend> friends = new ArrayList<>();
     LayoutInflater inflater;
 
     public CustomAdapter(Context context, ArrayList<Friend> friendsList){
@@ -48,7 +48,8 @@ public class CustomAdapter extends BaseAdapter {
         Friend friend = getItem(position);
 
         ImageView profilePicture = (ImageView) convertView.findViewById(R.id.contact_image);
-        Picasso.with(context).load("https://graph.facebook.com/"+friend.getId()+"/picture").into(profilePicture);
+        Picasso.with(context).load("https://graph.facebook.com/"+friend.getId()+"/picture?type=large").into(profilePicture);
+
 
         TextView name = (TextView) convertView.findViewById(R.id.contact_name);
         name.setText(friend.getName());

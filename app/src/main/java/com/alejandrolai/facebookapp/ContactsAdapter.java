@@ -16,13 +16,11 @@ import java.util.ArrayList;
 public class ContactsAdapter extends ArrayAdapter<Contact> {
 
     private Context context;
-    private int row;
     private ArrayList<Contact> contacts;
 
     public ContactsAdapter(Context context,int row, ArrayList<Contact> contacts) {
         super(context,row,contacts);
         this.context = context;
-        this.row = row;
         this.contacts = contacts;
     }
 
@@ -58,7 +56,4 @@ public class ContactsAdapter extends ArrayAdapter<Contact> {
         return super.getFilter();
     }
 
-    public class ViewHolder {
-        public TextView contactName, contactNumber;
-    }
 }

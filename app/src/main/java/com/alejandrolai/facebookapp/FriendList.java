@@ -1,14 +1,16 @@
 package com.alejandrolai.facebookapp;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -42,10 +44,11 @@ public class FriendList extends AppCompatActivity {
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Friend friend = (Friend)listView.getItemAtPosition(position);
-                Log.d("FriendList", "ID: " + friend.getId());
+                final ImageView imageView = (ImageView) view.findViewById(R.id.contact_image);
+                final BitmapDrawable bitmapDrawable = (BitmapDrawable) imageView.getDrawable();
+                final Bitmap bitmap = bitmapDrawable.getBitmap();
                 Intent intent = new Intent(getApplicationContext(),ContactList.class);
-                intent.putExtra("id",friend.getId());
+                intent.putExtra("bitmap",bitmap);
                 startActivity(intent);
                 return false;
             }
