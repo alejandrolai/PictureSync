@@ -49,7 +49,7 @@ public class FriendList extends AppCompatActivity {
                 final Bitmap bitmap = bitmapDrawable.getBitmap();
                 Intent intent = new Intent(getApplicationContext(),ContactList.class);
                 intent.putExtra("bitmap",bitmap);
-                startActivity(intent);
+                startActivityForResult(intent,1);
                 return false;
             }
         });

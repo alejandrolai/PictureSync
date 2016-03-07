@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class CustomAdapter extends BaseAdapter {
 
     Context context;
-    private ArrayList<Friend> friends = new ArrayList<>();
+    private ArrayList<Friend> friends = new ArrayList<Friend>();
     LayoutInflater inflater;
 
     public CustomAdapter(Context context, ArrayList<Friend> friendsList){

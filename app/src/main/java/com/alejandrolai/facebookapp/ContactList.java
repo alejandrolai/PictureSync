@@ -1,7 +1,10 @@
 package com.alejandrolai.facebookapp;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ContentProviderOperation;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -12,6 +15,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -56,7 +60,7 @@ public class ContactList extends AppCompatActivity {
             name = cursor.getString(cursor
                     .getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
 
-            phoneNumber = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NORMALIZED_NUMBER));
+            phoneNumber = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
             Contact contact = new Contact(name, phoneNumber);
             contact.setName(name);
             contact.setPhoneNumber(phoneNumber);
@@ -96,8 +100,10 @@ public class ContactList extends AppCompatActivity {
                 String contactId = Integer.toString(getContactId(phone, getApplicationContext()));
                 if (bitmap!=null) {
                     if (updatePhoto(contactId, name, phone, bitmap)) {
+                        showDialog(true);
                         Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
                     } else {
+                        showDialog(false);
                         Toast.makeText(getApplicationContext(),"Failed to update",Toast.LENGTH_SHORT).show();
                     }
                 } else {
@@ -160,6 +166,36 @@ public class ContactList extends AppCompatActivity {
             return false;
         }
         return true;
+    }
+
+    public void showDialog(boolean success) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        View view = inflater.inflate(R.layout.activity_main,null);
+        builder.setView(view);
+        if  (success) {
+            builder.setTitle("Success");
+        } else {
+            builder.setTitle("Failed to update");
+        }
+        builder.setNegativeButton( "Facebook Friends List",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent returnIntent = new Intent();
+                        setResult(Activity.RESULT_CANCELED, returnIntent);
+                        finish();
+                    }
+                });
+        builder.setPositiveButton("Exit",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        onStop();
+                    }
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
 }

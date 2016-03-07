@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
         LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions("user_friends");
         getLoginDetails(loginButton);
-
     }
 
     protected void getLoginDetails(final LoginButton login_Button) {
