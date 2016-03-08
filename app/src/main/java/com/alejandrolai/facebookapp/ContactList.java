@@ -51,7 +51,7 @@ public class ContactList extends AppCompatActivity {
         }
 
         contactListView = (ListView) findViewById(R.id.contactsList);
-        contactListView.setAdapter(new ContactsAdapter(this,R.layout.listview_friend,contacts));
+        contactListView.setAdapter(new ContactsAdapter(this, R.layout.listview_friend, contacts));
 
         Cursor cursor = getContentResolver().query(
                 ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null,null, null);
@@ -91,25 +91,24 @@ public class ContactList extends AppCompatActivity {
             }
         });
 
-        contactListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        contactListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Contact contact = (Contact) contactListView.getItemAtPosition(position);
                 String name = contact.getName();
                 String phone = contact.getPhoneNumber();
                 String contactId = Integer.toString(getContactId(phone, getApplicationContext()));
-                if (bitmap!=null) {
+                if (bitmap != null) {
                     if (updatePhoto(contactId, name, phone, bitmap)) {
                         showDialog(true);
                         Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
                     } else {
                         showDialog(false);
-                        Toast.makeText(getApplicationContext(),"Failed to update",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Failed to update", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Toast.makeText(getApplicationContext(), "Bitmap null", Toast.LENGTH_SHORT).show();
                 }
-                return false;
             }
         });
     }
@@ -171,7 +170,7 @@ public class ContactList extends AppCompatActivity {
     public void showDialog(boolean success) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
-        View view = inflater.inflate(R.layout.activity_main,null);
+        View view = inflater.inflate(R.layout.dialog,null);
         builder.setView(view);
         if  (success) {
             builder.setTitle("Success");
@@ -191,7 +190,7 @@ public class ContactList extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        onStop();
+                        finish();
                     }
                 });
         AlertDialog dialog = builder.create();
