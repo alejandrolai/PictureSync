@@ -54,7 +54,7 @@ public class FriendList extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 myView = view;
-                int permission = 0;
+                int permission;
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
                     permission = checkSelfPermission(android.Manifest.permission.WRITE_CONTACTS);
                     if (permission != PackageManager.PERMISSION_GRANTED) {
@@ -75,7 +75,6 @@ public class FriendList extends AppCompatActivity {
                                 1);
                         return;
                     }
-                    sendBitmap();
                 } else {
                     sendBitmap();
                 }
