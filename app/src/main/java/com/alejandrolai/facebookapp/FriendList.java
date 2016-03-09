@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -34,7 +35,7 @@ public class FriendList extends AppCompatActivity {
         friends = getIntent().getParcelableArrayListExtra("data");
 
         final ListView listView = (ListView) findViewById(R.id.friendsListview);
-        listView.setAdapter(new CustomAdapter(this, friends));
+        listView.setAdapter(new FriendsAdapter(this, friends));
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -83,7 +84,7 @@ public class FriendList extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case 1:

@@ -1,31 +1,28 @@
 package com.alejandrolai.facebookapp;
 
-/**
- * Created by Alejandro on 3/2/16.
- */
 public class Contact {
 
-    private String name;
-    private String phoneNumber;
+    private String mName;
+    private String mPhoneNumber;
 
     public Contact(String name, String phoneNumber) {
-        this.name = name;
-        this.phoneNumber = phoneNumber;
+        this.mName = name;
+        this.mPhoneNumber = phoneNumber;
     }
 
     public String getName() {
-        return name;
+        return mName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.mName = name;
     }
 
     public String getPhoneNumber() {
-        return phoneNumber;
+        return mPhoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+        this.mPhoneNumber = phoneNumber;
     }
 }

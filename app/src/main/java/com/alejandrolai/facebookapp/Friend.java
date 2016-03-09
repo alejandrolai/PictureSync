@@ -3,21 +3,18 @@ package com.alejandrolai.facebookapp;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
- * Created by Alejandro on 2/28/16.
- */
 public class Friend implements Parcelable{
-    private String name;
-    private String id;
+    private String mName;
+    private String mId;
 
     public Friend(Parcel in){
-        name = in.readString();
-        id = in.readString();
+        mName = in.readString();
+        mId = in.readString();
     }
 
     public Friend(String name, String id) {
-        this.name = name;
-        this.id = id;
+        this.mName = name;
+        this.mId = id;
     }
 
     public static final Creator<Friend> CREATOR = new Creator<Friend>() {
@@ -33,19 +30,19 @@ public class Friend implements Parcelable{
     };
 
     public String getName() {
-        return name;
+        return mName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.mName = name;
     }
 
     public String getId() {
-        return id;
+        return mId;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.mId = id;
     }
 
     @Override
@@ -55,7 +52,7 @@ public class Friend implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(name);
-        dest.writeString(id);
+        dest.writeString(mName);
+        dest.writeString(mId);
     }
 }
