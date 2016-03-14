@@ -53,7 +53,6 @@ public class FriendList extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 myView = view;
                 int permission;
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
@@ -76,6 +75,7 @@ public class FriendList extends AppCompatActivity {
                                 1);
                         return;
                     }
+                    sendBitmap();
                 } else {
                     sendBitmap();
                 }
