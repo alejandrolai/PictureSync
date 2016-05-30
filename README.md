@@ -1,4 +1,4 @@
-# PhotoSync
+# PictureSync
 Android application that syncs your Facebook friends' profile pictures with your contacs
 
 ## TODOs
